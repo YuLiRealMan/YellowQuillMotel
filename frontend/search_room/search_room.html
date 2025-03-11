@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Room Search Interface</title>
+    <link rel="stylesheet" href="search_room.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Room Search</h1>
+        <form action="#" method="POST">
+            <label for="check-in">Check-in Date:</label>
+            <input type="date" id="check-in" name="check-in" required><br>
+
+            <label for="check-out">Check-out Date:</label>
+            <input type="date" id="check-out" name="check-out" required><br>
+
+            <label for="bed-option">Bed Option:</label>
+            <select id="bed-option" name="bed-option" required>
+                <option value="1">1 Bed</option>
+                <option value="2">2 Beds</option>
+            </select><br>
+
+            <label for="pet-option">Pet Friendly:</label>
+            <select id="pet-option" name="pet-option" required>
+                <option value="yes">Yes</option>
+                <option value="no">No</option>
+            </select><br>
+
+            <button type="submit" class="search-btn">Search</button>
+        </form>
+    </div>
+</body>
+</html>
