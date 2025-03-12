@@ -1,8 +1,23 @@
+import { useRef } from "react";
 import "./App.css"; // https://nerdcave.com/tailwind-cheat-sheet
 
 function App() {
+  const inputRef = useRef<HTMLInputElement>(null)
+
+
+
+  function trySearch() {
+    alert("I WAS PRESSED, SEARCHING");
+  }
+
+  // END OF LOGIC
   return (
     <div className="container">
+      <div className="flex gap-2 justify-center">
+        <input ref={inputRef} />
+        <button onClick={trySearch} >Search</button>
+      </div>
+
       <h1>Room Search</h1>
       <form action="#" method="POST">
         <label className="text-xl">Check-in Date:</label>
