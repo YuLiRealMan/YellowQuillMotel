@@ -2,12 +2,16 @@ import { useRef } from "react";
 import "./App.css"; // https://nerdcave.com/tailwind-cheat-sheet
 
 function App() {
-  const inputRef = useRef<HTMLInputElement>(null)
-
-
+  const inputRef = useRef<HTMLInputElement>(null);
 
   function trySearch() {
-    alert("I WAS PRESSED, SEARCHING");
+    if (!inputRef.current) {
+      //ref.current
+      return;
+    }
+
+    alert(inputRef.current.value);
+    // alert("I WAS PRESSED, SEARCHING");
   }
 
   // END OF LOGIC
@@ -15,7 +19,7 @@ function App() {
     <div className="container">
       <div className="flex gap-2 justify-center">
         <input ref={inputRef} />
-        <button onClick={trySearch} >Search</button>
+        <button onClick={trySearch}>Search</button>
       </div>
 
       <h1>Room Search</h1>
@@ -56,3 +60,8 @@ export default App;
   /* <div></div>
 <p></p> */
 }
+
+
+// UI TO look like
+// Know what your data will be
+//Psuedocode for room stuff
