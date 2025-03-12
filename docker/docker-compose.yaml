@@ -1,0 +1,30 @@
+version: '3.8'
+name: "hotel-check-in"
+services:
+
+  postgres:
+    image: postgres:latest
+    environment:
+      - POSTGRES_DB=${DB}
+      - POSTGRES_USER=${DB_USER}
+      - POSTGRES_PASSWORD=${DB_PWD}
+    restart: unless-stopped
+    volumes: 
+      # The init script needs to be added first, otherwise, docker will think a database already exists
+      - ./postgres/init.sql:/docker-entrypoint-initdb.d/init.sql
+      - ./postgres/data:/var/lib/postgresql/data
+    ports:
+      - '5432:5432'
+
+  pgadmin:
+    image: dpage/pgadmin4:latest
+    restart: unless-stopped
+    depends_on:
+      - postgres
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=${PGADMIN_EMAIL}
+      - PGADMIN_DEFAULT_PASSWORD=${PGADMIN_PW}
+    volumes: 
+      - ./pgadmin/data:/data
+    ports:
+      - '5433:80'
