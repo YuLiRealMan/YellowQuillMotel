@@ -10,16 +10,46 @@ function App() {
   const [bedOption, setBedOption] = useState('1 Bed');
   const [petFriendly, setPetFriendly] = useState('No');
   const [smokingFriendly, setSmokingFriendly] = useState('No');
+  const [roomList, setRoomList] = useState<string[]>([]); // State to hold room list
   // Handle form submission
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSearch = async (e: React.FormEvent) => {
     e.preventDefault(); // Prevents page reload
-    alert(`Check-in: ${checkInDate}\nCheck-out: ${checkOutDate}\nBed: ${bedOption}\nPet Friendly: ${petFriendly}\nSmoking Friendly: ${smokingFriendly}`);
+    
+    const searchData = {
+      checkInDate,
+      checkOutDate,
+      bedOption,
+      petFriendly,
+      smokingFriendly,
+    };
+
+    try{
+      //call the backend API to fetch available rooms
+
+      const response = await fetch('http://localhost:5000/api/rooms/search',{
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(searchData),
+      });
+
+      if(response.ok){
+        const data = await response.json();
+        setRoomList(data.rooms);// Update state with the list of available rooms
+      }else{
+        console.error('Failed to fetch rooms');
+      }
+
+    } catch (error) {
+      console.error('Failed to fetch rooms', error);
+    }
   };
 
   return (
     <div className="container">
       <h1>Room Search</h1>
-      <form onSubmit={handleSubmit} action="#" method="POST">
+      <form onSubmit={handleSearch} action="#" method="POST">
         <label className="text-xl">Check-in Date:</label>
         <input
           type="date"
