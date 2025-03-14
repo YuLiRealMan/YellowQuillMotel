@@ -85,7 +85,7 @@ function App() {
         </select>
         <br />
 
-        <label>Pet Friendly:</label>
+        <label>Pet:</label>
         <select
           id="pet-option"
           name="pet-option"
@@ -98,7 +98,7 @@ function App() {
         </select>
         <br />
 
-        <label>Smoking Friendly:</label>
+        <label>Smoking Room:</label>
         <select
           id="smoking-option"
           name="smoking-option"
