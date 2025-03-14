@@ -26,7 +26,7 @@ function App() {
     try{
       //call the backend API to fetch available rooms
 
-      const response = await fetch('http://localhost:5000/api/rooms/search',{
+      const response = await fetch('http://127.0.0.1:8000/search',{
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
